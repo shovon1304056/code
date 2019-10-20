@@ -1,0 +1,38 @@
+public  function category(){
+        return $this->belongsTo('App\Category');
+    }
+
+public function items()
+    {
+        return $this->hasMany('App\Item');
+    }
+
+
+$table->unsignedBigInteger('category_id');
+
+ $table->foreign('category_id')
+                ->references('id')->on('categories')
+                ->onDelete('cascade');
+
+
+<td>{{$item->category->name}}</td>
+
+<div class="form-group label-floating">
+                                                <label class="control-label">Category</label>
+                                                <select class="form-control" id="category" name="category">
+                                                    @foreach($categories as $category)
+                                                        <option value="{{$category->id}}">{{$category->name}}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+
+
+ <div class="form-group label-floating">
+                                                <label class="control-label">Category</label>
+                                                <select class="form-control" id="category" name="category">
+                                                    @foreach($categories as $category)
+                                                        <option {{$category->id == $item->category->id ? 'selected' : " "}}
+                                                            value="{{$category->id}}">{{$category->name}}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
